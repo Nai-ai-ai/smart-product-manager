@@ -19,7 +19,62 @@
 
 ## 项目结构
 
-
+```
+smart-product-manager
+├── src/main/java/com/guat/lzp/product
+│   ├── ProductManagerApplication.java
+│   ├── config/
+│   │   ├── CacheConfig.java
+│   │   ├── CustomLoginSuccessHandler.java
+│   │   ├── CustomUserDetailsService.java
+│   │   ├── JacksonConfig.java
+│   │   ├── RedisConfig.java
+│   │   ├── SecurityConfig.java
+│   │   └── StartupUrlPrinter.java
+│   ├── controller/
+│   │   ├── CategoryController.java
+│   │   ├── PageController.java
+│   │   └── ProductController.java
+│   ├── entity/
+│   │   ├── ApiResult.java
+│   │   ├── Category.java
+│   │   ├── PageResult.java
+│   │   ├── Product.java
+│   │   ├── ProductVO.java
+│   │   └── User.java
+│   ├── mapper/
+│   │   ├── CategoryMapper.java
+│   │   ├── ProductMapper.java
+│   │   └── UserMapper.java
+│   └── service/
+│       ├── CategoryService.java
+│       ├── ProductService.java
+│       ├── UserService.java
+│       └── impl/
+│           ├── CategoryServiceImpl.java
+│           ├── ProductServiceImpl.java
+│           └── UserServiceImpl.java
+├── src/main/resources
+│   ├── application.yml
+│   ├── application-dev.yml
+│   ├── application-prd.yml
+│   ├── mapper/
+│   │   ├── CategoryMapper.xml
+│   │   ├── ProductMapper.xml
+│   │   └── UserMapper.xml
+│   ├── sql/
+│   │   ├── add_user.sql
+│   │   └── init_report.sql
+│   ├── static/
+│   │   ├── css/
+│   │   ├── images/
+│   │   └── js/
+│   └── templates/
+│       ├── login.html
+│       ├── admin/
+│       └── user/
+└── pom.xml
+```
 
 ## 快速开始
 
@@ -33,18 +88,11 @@
 ### 运行步骤
 
 1. 克隆项目
-   
-
 2. 创建数据库，执行  下的 SQL 脚本初始化表结构和数据
-
 3. 修改  中的数据库和 Redis 连接信息
-
 4. 启动 Redis 服务
-
 5. 使用 IDEA 打开项目，等待 Maven 依赖下载完成
-
 6. 运行 
-
 7. 访问 http://localhost:8080/
 
 ### 默认账号
@@ -98,7 +146,7 @@
 
 | 路径 | 权限 |
 |------|------|
-| , , , 静态资源 | 公开访问 |
+| , , 静态资源 | 公开访问 |
 | ,  | 仅管理员（ROLE_admin） |
 | ,  | 已认证用户 |
 | ,  | 仅管理员 |
