@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guat.lzp.product.mapper.UserMapper">
+
+    <select id="findByUsername" resultType="com.guat.lzp.product.entity.User">
+        SELECT id, username, password, nickname, email, phone, avatar, active, create_time, update_time
+        FROM t_user WHERE username = #{username}
+    </select>
+
+    <select id="findRolesByUserId" resultType="java.lang.String">
+        SELECT r.role
+        FROM t_role r
+        INNER JOIN t_user_role ur ON r.id = ur.role_id
+        WHERE ur.user_id = #{userId}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_user (username, password, nickname, email, phone, avatar, active, create_time, update_time)
+        VALUES (#{username}, #{password}, #{nickname}, #{email}, #{phone}, #{avatar}, #{active}, #{createTime}, #{updateTime})
+    </insert>
+
+</mapper>

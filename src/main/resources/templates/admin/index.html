@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧优选信息管理系统</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+<div class="admin-container">
+    <!-- 左侧侧边栏 -->
+    <div class="sidebar">
+        <div class="logo">
+            <h2>商品管理系统</h2>
+        </div>
+        <ul class="menu">
+            <li class="menu-item active" data-src="/admin/welcome">
+                <span class="icon">🏠</span>
+                <span class="text">首页</span>
+            </li>
+            <li class="menu-item" data-src="/admin/category">
+                <span class="icon">📁</span>
+                <span class="text">分类管理</span>
+            </li>
+            <li class="menu-item" data-src="/admin/product">
+                <span class="icon">📦</span>
+                <span class="text">商品管理</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 右侧主内容区 -->
+    <div class="main-content">
+        <!-- 顶部导航栏 -->
+        <div class="header">
+            <div class="header-left">
+                <span class="title">智慧优选信息管理系统</span>
+            </div>
+            <div class="header-right">
+                <span class="user-info">
+                    <span class="avatar">👤</span>
+                    <span class="username" th:text="${username}">admin</span>
+                </span>
+                <a th:href="@{/logout}" class="logout-btn">退出登录</a>
+            </div>
+        </div>
+
+        <!-- iframe内容区 -->
+        <div class="content-wrapper">
+            <iframe id="mainFrame" src="/admin/welcome" frameborder="0"></iframe>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/admin.js}"></script>
+</body>
+</html>

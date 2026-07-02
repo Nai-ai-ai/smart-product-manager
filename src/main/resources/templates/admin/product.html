@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品管理</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+<div class="page-container">
+    <div class="page-header">
+        <h2 class="page-title">商品管理</h2>
+        <button class="btn btn-primary" onclick="openAddProductModal()">+ 新增商品</button>
+    </div>
+
+    <!-- 搜索栏 -->
+    <div class="search-bar">
+        <div class="search-item">
+            <label>商品名称：</label>
+            <input type="text" id="searchName" placeholder="请输入商品名称">
+        </div>
+        <div class="search-item">
+            <label>商品分类：</label>
+            <select id="searchCategory" name="categoryId">
+                <option value="">全部分类</option>
+            </select>
+        </div>
+        <div class="search-item">
+            <button class="btn btn-primary" onclick="searchProduct()">搜索</button>
+            <button class="btn btn-default" onclick="resetSearch()">重置</button>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th width="80">ID</th>
+                <th width="80">图片</th>
+                <th>商品名称</th>
+                <th width="120">分类</th>
+                <th width="100">价格</th>
+                <th width="120">发布日期</th>
+                <th width="180">操作</th>
+            </tr>
+            </thead>
+            <tbody id="productTable">
+            <tr>
+                <td colspan="7" style="text-align: center; padding: 40px;">加载中...</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- 分页 -->
+        <div class="pagination" id="pagination">
+        </div>
+    </div>
+</div>
+
+<!-- 新增/编辑模态框 -->
+<div class="modal-overlay" id="productModal">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 class="modal-title" id="productModalLabel">新增商品</h3>
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form id="productForm">
+                <input type="hidden" id="productId">
+                <div class="form-group">
+                    <label>商品名称</label>
+                    <input type="text" id="productName" placeholder="请输入商品名称" required>
+                </div>
+                <div class="form-group">
+                    <label>商品分类</label>
+                    <select id="productCategory" name="categoryId">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>商品价格</label>
+                    <input type="number" id="productPrice" placeholder="请输入商品价格" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label>商品描述</label>
+                    <textarea id="productDesc" placeholder="请输入商品描述"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>商品图片URL</label>
+                    <input type="text" id="productImage" placeholder="请输入图片URL">
+                </div>
+                <div class="form-group">
+                    <label>发布日期</label>
+                    <input type="date" id="productReleaseDate">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-default" onclick="closeModal()">取消</button>
+            <button class="btn btn-primary" onclick="saveProduct()">确定</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script th:src="@{/js/product.js}"></script>
+</body>
+</html>
