@@ -79,10 +79,10 @@ smart-product-manager
 
 数据库配置已在application-dev.yml和application-prd.yml中配置：
 
-- **数据库IP**：10.1.21.22
-- **数据库名**：2024_lzp
-- **用户名**：2024_lzp
-- **密码**：bigdata22
+- **数据库IP**：129.204.142.57
+- **数据库名**：2024lzp
+- **用户名**：root
+- **密码**：Bigdata22!
 
 ### 初始化数据库
 

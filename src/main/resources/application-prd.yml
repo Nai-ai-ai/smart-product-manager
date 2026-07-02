@@ -3,9 +3,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://10.1.21.22:3306/2024_lzp?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    username: 2024_lzp
-    password: bigdata22
+    url: jdbc:mysql://129.204.142.57:3306/2024lzp?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: 2024lzp
+    password: Bigdata22!
     druid:
       initial-size: 10
       min-idle: 10
@@ -19,9 +19,9 @@ spring:
       test-on-return: false
 
   redis:
-    host: 10.1.21.22
+    host: 129.204.142.57
     port: 6379
-    password: bigdata22
+    password: Bigdata22!
     database: 1
     timeout: 3000ms
     lettuce:

@@ -32,9 +32,18 @@ public class SecurityConfig {
         http
             .userDetailsService(customUserDetailsService)
             .authorizeHttpRequests(authz -> authz
-                .antMatchers("/login", "/register", "/css/**", "/js/**", "/images/**").permitAll()
+                // 公开页面 & 静态资源
+                .antMatchers("/login", "/register", "/css/**", "/js/**", "/images/**", "/img/**").permitAll()
                 .antMatchers("/api/user/register").permitAll()
-                .antMatchers("/admin/**", "/api/admin/**").hasRole("admin")
+                
+                // 管理后台页面 —— 仅管理员
+                .antMatchers("/index", "/admin/**").hasRole("admin")
+                
+                // API 权限：查询接口所有人可用，增删改仅管理员
+                .antMatchers(org.springframework.http.HttpMethod.GET, "/api/product/**", "/api/category/**").authenticated()
+                .antMatchers("/api/product/**", "/api/category/**").hasRole("admin")
+                
+                // 其余需认证
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form

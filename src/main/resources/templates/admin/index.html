@@ -18,11 +18,12 @@
                 <span class="icon">🏠</span>
                 <span class="text">首页</span>
             </li>
-            <li class="menu-item" data-src="/admin/category">
+            <!-- 分类管理 & 商品管理 —— 仅管理员可见 -->
+            <li class="menu-item" data-src="/admin/category" sec:authorize="hasRole('admin')">
                 <span class="icon">📁</span>
                 <span class="text">分类管理</span>
             </li>
-            <li class="menu-item" data-src="/admin/product">
+            <li class="menu-item" data-src="/admin/product" sec:authorize="hasRole('admin')">
                 <span class="icon">📦</span>
                 <span class="text">商品管理</span>
             </li>
@@ -40,6 +41,8 @@
                 <span class="user-info">
                     <span class="avatar">👤</span>
                     <span class="username" th:text="${username}">admin</span>
+                    <span class="role-tag" sec:authorize="hasRole('admin')" style="margin-left:8px;font-size:12px;background:rgba(110,140,255,0.15);color:#6e8cff;padding:2px 8px;border-radius:8px;">管理员</span>
+                    <span class="role-tag" sec:authorize="hasRole('normal')" style="margin-left:8px;font-size:12px;background:rgba(52,199,89,0.15);color:#34c759;padding:2px 8px;border-radius:8px;">普通用户</span>
                 </span>
                 <a th:href="@{/logout}" class="logout-btn">退出登录</a>
             </div>
