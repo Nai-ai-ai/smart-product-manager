@@ -31,9 +31,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Cacheable(value = "product", key = "#id")
     public ProductVO findById(Long id) {
-        System.out.println("[缓存未命中] 从数据库查询商品: " + id);
         return productMapper.findById(id);
     }
 
