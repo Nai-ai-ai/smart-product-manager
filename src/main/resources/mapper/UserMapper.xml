@@ -3,7 +3,7 @@
 <mapper namespace="com.guat.lzp.product.mapper.UserMapper">
 
     <select id="findByUsername" resultType="com.guat.lzp.product.entity.User">
-        SELECT id, username, password, nickname, email, phone, avatar, active, create_time, update_time
+        SELECT id, username, password, active
         FROM t_user WHERE username = #{username}
     </select>
 
@@ -14,9 +14,37 @@
         WHERE ur.user_id = #{userId}
     </select>
 
+    <select id="findAll" resultType="com.guat.lzp.product.entity.User">
+        SELECT id, username, password, active
+        FROM t_user ORDER BY id DESC
+    </select>
+
+    <select id="findById" resultType="com.guat.lzp.product.entity.User">
+        SELECT id, username, password, active
+        FROM t_user WHERE id = #{id}
+    </select>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO t_user (username, password, nickname, email, phone, avatar, active, create_time, update_time)
-        VALUES (#{username}, #{password}, #{nickname}, #{email}, #{phone}, #{avatar}, #{active}, #{createTime}, #{updateTime})
+        INSERT INTO t_user (username, password, active)
+        VALUES (#{username}, #{password}, #{active})
     </insert>
+
+    <update id="update">
+        UPDATE t_user
+        <set>
+            <if test="username != null">username = #{username},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="active != null">active = #{active},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM t_user WHERE id = #{id}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM t_user
+    </select>
 
 </mapper>

@@ -6,6 +6,8 @@ import com.guat.lzp.product.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -18,7 +20,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findAll() {
+        return userMapper.findAll();
+    }
+
+    @Override
+    public User findById(Long id) {
+        return userMapper.findById(id);
+    }
+
+    @Override
     public boolean save(User user) {
         return userMapper.insert(user) > 0;
+    }
+
+    @Override
+    public boolean update(User user) {
+        return userMapper.update(user) > 0;
+    }
+
+    @Override
+    public boolean deleteById(Long id) {
+        return userMapper.deleteById(id) > 0;
+    }
+
+    @Override
+    public int countAll() {
+        return userMapper.countAll();
     }
 }

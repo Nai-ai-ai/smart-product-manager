@@ -47,8 +47,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @CacheEvict(value = "category", key = "#id")
+    @CacheEvict(value = "category", allEntries = true)
     public boolean deleteById(Long id) {
+        // 检查分类下是否有商品
+        int productCount = categoryMapper.countProductsByCategoryId(id);
+        if (productCount > 0) {
+            throw new RuntimeException("该分类下还有" + productCount + "个商品，请先删除或转移商品");
+        }
         return categoryMapper.deleteById(id) > 0;
     }
 

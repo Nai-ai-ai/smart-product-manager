@@ -51,8 +51,12 @@ public class CategoryController {
     /** 删除分类 */
     @PostMapping("/delete/{id}")
     public ApiResult<String> delete(@PathVariable Long id) {
-        boolean success = categoryService.deleteById(id);
-        return success ? ApiResult.success("删除成功", null) : ApiResult.error("删除失败");
+        try {
+            boolean success = categoryService.deleteById(id);
+            return success ? ApiResult.success("删除成功", null) : ApiResult.error("删除失败");
+        } catch (RuntimeException e) {
+            return ApiResult.error(e.getMessage());
+        }
     }
 
     /** 获取分类总数 */

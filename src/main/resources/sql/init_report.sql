@@ -19,13 +19,7 @@ CREATE TABLE `t_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
   `username` varchar(200) NOT NULL COMMENT '登录账号',
   `password` varchar(200) NOT NULL COMMENT '登录密码（BCrypt加密）',
-  `nickname` varchar(100) DEFAULT NULL COMMENT '昵称',
-  `email` varchar(200) DEFAULT NULL COMMENT '邮箱',
-  `phone` varchar(20) DEFAULT NULL COMMENT '手机号',
-  `avatar` varchar(500) DEFAULT NULL COMMENT '头像URL',
   `active` int(1) DEFAULT 1 COMMENT '1可用，0不可用',
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
@@ -78,9 +72,9 @@ CREATE TABLE `product` (
 -- =====================================================
 
 -- 插入用户数据（密码为 123456 的 BCrypt 哈希值）
-INSERT INTO `t_user` (`username`, `password`, `nickname`, `email`, `phone`, `active`) VALUES 
-('admin', '$2a$10$tgmoDtjYB/IP.0QoTU2hNOA6TuYUidtVWe4YGbYfGel3waJ2W2Zoi', '系统管理员', 'admin@guat.edu.cn', '13800138000', 1), 
-('bob', '$2a$10$tgmoDtjYB/IP.0QoTU2hNOA6TuYUidtVWe4YGbYfGel3waJ2W2Zoi', '普通用户', 'bob@guat.edu.cn', '13900139000', 1);
+INSERT INTO `t_user` (`username`, `password`, `active`) VALUES 
+('admin', '$2a$10$tgmoDtjYB/IP.0QoTU2hNOA6TuYUidtVWe4YGbYfGel3waJ2W2Zoi', 1), 
+('bob', '$2a$10$tgmoDtjYB/IP.0QoTU2hNOA6TuYUidtVWe4YGbYfGel3waJ2W2Zoi', 1);
 
 -- 插入角色数据
 INSERT INTO `t_role` (`role`) VALUES 

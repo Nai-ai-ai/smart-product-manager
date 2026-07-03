@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智慧优选信息管理系统</title>
+    <title>智慧商品信息管理系统</title>
     <link rel="stylesheet" th:href="@{/css/admin.css}">
 </head>
 <body>
@@ -11,14 +11,14 @@
     <!-- 左侧侧边栏 -->
     <div class="sidebar">
         <div class="logo">
-            <h2>商品管理系统</h2>
+            <h2>智慧商品信息管理系统</h2>
         </div>
         <ul class="menu">
             <li class="menu-item active" data-src="/admin/welcome">
                 <span class="icon">🏠</span>
                 <span class="text">首页</span>
             </li>
-            <!-- 分类管理 & 商品管理 —— 仅管理员可见 -->
+            <!-- 分类管理 & 商品管理 & 用户管理 —— 仅管理员可见 -->
             <li class="menu-item" data-src="/admin/category" sec:authorize="hasRole('admin')">
                 <span class="icon">📁</span>
                 <span class="text">分类管理</span>
@@ -26,6 +26,10 @@
             <li class="menu-item" data-src="/admin/product" sec:authorize="hasRole('admin')">
                 <span class="icon">📦</span>
                 <span class="text">商品管理</span>
+            </li>
+            <li class="menu-item" data-src="/admin/user" sec:authorize="hasRole('admin')">
+                <span class="icon">👥</span>
+                <span class="text">用户管理</span>
             </li>
         </ul>
     </div>
@@ -35,7 +39,7 @@
         <!-- 顶部导航栏 -->
         <div class="header">
             <div class="header-left">
-                <span class="title">智慧优选信息管理系统</span>
+                <span class="title">智慧商品信息管理系统</span>
             </div>
             <div class="header-right">
                 <span class="user-info">

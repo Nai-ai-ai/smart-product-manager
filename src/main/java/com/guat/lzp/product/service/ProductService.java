@@ -5,25 +5,32 @@ import com.guat.lzp.product.entity.Product;
 import com.guat.lzp.product.entity.ProductVO;
 
 /**
- * 商品服务接口
+ * 商品业务接口
  */
 public interface ProductService {
 
-    /** 多条件分页查询商品 */
-    PageResult<ProductVO> findByPage(Integer pageNum, Integer pageSize, String name, Long categoryId, Integer status);
+    /**
+     * 分页查询商品
+     * @param pageNum    页码（从1开始）
+     * @param pageSize   每页条数
+     * @param name       商品名称（模糊查询，可为null）
+     * @param categoryId 分类ID（精确匹配，可为null）
+     * @param status     状态（预留字段，可为null）
+     * @param minPrice   最低价格（可为null）
+     * @param maxPrice   最高价格（可为null）
+     * @return 分页结果
+     */
+    PageResult<ProductVO> findByPage(Integer pageNum, Integer pageSize, String name, Long categoryId, 
+                                     Integer status, Double minPrice, Double maxPrice);
 
-    /** 根据ID查询商品 */
     ProductVO findById(Long id);
 
-    /** 新增商品 */
     boolean save(Product product);
 
-    /** 更新商品 */
-    Product update(Product product);
+    ProductVO update(Product product);
 
-    /** 根据ID删除商品 */
     boolean deleteById(Long id);
 
-    /** 统计商品数量 */
+    /** 统计全部商品数量 */
     int countAll();
 }

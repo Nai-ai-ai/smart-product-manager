@@ -16,13 +16,17 @@ public interface ProductMapper {
     List<ProductVO> findByPage(@Param("name") String name,
                                @Param("catId") Long catId,
                                @Param("status") Integer status,
+                               @Param("minPrice") Double minPrice,
+                               @Param("maxPrice") Double maxPrice,
                                @Param("offset") int offset,
                                @Param("limit") int limit);
 
     /** 统计符合条件的商品总数 */
     int countByCondition(@Param("name") String name,
                          @Param("catId") Long catId,
-                         @Param("status") Integer status);
+                         @Param("status") Integer status,
+                         @Param("minPrice") Double minPrice,
+                         @Param("maxPrice") Double maxPrice);
 
     /** 根据ID查询商品 */
     ProductVO findById(@Param("id") Long id);

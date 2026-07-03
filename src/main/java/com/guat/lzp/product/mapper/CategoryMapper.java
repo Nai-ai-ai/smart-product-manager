@@ -28,4 +28,7 @@ public interface CategoryMapper {
 
     /** 统计分类总数 */
     int countAll();
+    
+    /** 统计分类下的商品数量 */
+    int countProductsByCategoryId(@Param("id") Long id);
 }

@@ -31,4 +31,18 @@ function loadStats() {
         .catch(function(error) {
             console.error('加载分类数量失败:', error);
         });
+
+    // 加载用户数量
+    fetch('/api/product/user-count')
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            if (data.code === 200) {
+                document.getElementById('userCount').textContent = data.data;
+            }
+        })
+        .catch(function(error) {
+            console.error('加载用户数量失败:', error);
+        });
 }

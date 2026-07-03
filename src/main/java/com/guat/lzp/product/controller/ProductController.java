@@ -5,6 +5,7 @@ import com.guat.lzp.product.entity.PageResult;
 import com.guat.lzp.product.entity.Product;
 import com.guat.lzp.product.entity.ProductVO;
 import com.guat.lzp.product.service.ProductService;
+import com.guat.lzp.product.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private UserService userService;
+
     /** 分页查询商品列表 */
     @RequestMapping(value = {"/page", "/list"}, method = RequestMethod.GET)
     public ApiResult<PageResult<ProductVO>> list(
@@ -25,8 +29,10 @@ public class ProductController {
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) Long categoryId,
-            @RequestParam(required = false) Integer status) {
-        PageResult<ProductVO> result = productService.findByPage(pageNum, pageSize, name, categoryId, status);
+            @RequestParam(required = false) Integer status,
+            @RequestParam(required = false) Double minPrice,
+            @RequestParam(required = false) Double maxPrice) {
+        PageResult<ProductVO> result = productService.findByPage(pageNum, pageSize, name, categoryId, status, minPrice, maxPrice);
         return ApiResult.success(result);
     }
 
@@ -50,7 +56,7 @@ public class ProductController {
     /** 更新商品信息 */
     @PostMapping("/update")
     public ApiResult<String> update(@RequestBody Product product) {
-        Product updated = productService.update(product);
+        ProductVO updated = productService.update(product);
         return updated != null ? ApiResult.success("更新成功", null) : ApiResult.error("更新失败");
     }
 
@@ -65,6 +71,13 @@ public class ProductController {
     @GetMapping("/count")
     public ApiResult<Integer> count() {
         int total = productService.countAll();
+        return ApiResult.success(total);
+    }
+
+    /** 获取用户总数 */
+    @GetMapping("/user-count")
+    public ApiResult<Integer> userCount() {
+        int total = userService.countAll();
         return ApiResult.success(total);
     }
 }

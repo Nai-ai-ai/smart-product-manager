@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -18,7 +18,8 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        // 使用 DelegatingPasswordEncoder，自动识别 {noop}、{bcrypt} 等前缀
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
     @Autowired
@@ -35,6 +36,9 @@ public class SecurityConfig {
                 // 公开页面 & 静态资源
                 .antMatchers("/login", "/register", "/css/**", "/js/**", "/images/**", "/img/**").permitAll()
                 .antMatchers("/api/user/register").permitAll()
+                
+                // 缓存测试接口 - 公开访问
+                .antMatchers("/test/cache/**").permitAll()
                 
                 // 管理后台页面 —— 仅管理员
                 .antMatchers("/index", "/admin/**").hasRole("admin")

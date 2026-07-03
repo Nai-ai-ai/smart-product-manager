@@ -44,6 +44,11 @@ public class PageController {
         return "admin/product";
     }
 
+    @GetMapping("/admin/user")
+    public String adminUser() {
+        return "admin/user";
+    }
+
     @GetMapping("/user")
     public String userIndex() {
         return "user/index";
