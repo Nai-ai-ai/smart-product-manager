@@ -99,13 +99,12 @@ smart-product-manager
 
 ### 运行步骤
 
-1. 克隆项目
-2. 创建数据库，执行 `src/main/resources/sql/` 下的 SQL 脚本初始化表结构和数据
-3. 修改 `application-dev.yml` 中的数据库和 Redis 连接信息
-4. 启动 Redis 服务
-5. 使用 IDEA 打开项目，等待 Maven 依赖下载完成
-6. 运行 `ProductManagerApplication.java`
-7. 访问 http://localhost:8080/
+1. 创建数据库，执行 `src/main/resources/sql/` 下的 SQL 脚本初始化表结构和数据
+2. 修改 `application-dev.yml` 中的数据库和 Redis 连接信息
+3. 启动 Redis 服务
+4. 使用 IDEA 打开项目，等待 Maven 依赖下载完成
+5. 运行 `ProductManagerApplication.java`
+6. 访问 http://localhost:8080/
 
 ### 默认账号
 
@@ -155,7 +154,7 @@ smart-product-manager
 
 ### 表结构
 
-- **t_user** — 用户表（id, username, password, nickname, email, phone, avatar, active）
+- **t_user** — 用户表（id, username, password, active）
 - **t_role** — 角色表（id, role）
 - **t_user_role** — 用户角色关联表（user_id, role_id）
 - **product** — 商品表（id, name, photo_url, price, descp, release_date, cat_id）
