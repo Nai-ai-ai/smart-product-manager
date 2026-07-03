@@ -7,6 +7,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("用户不存在: " + username);
         }
         if (user.getActive() != null && user.getActive() == 0) {
-            throw new UsernameNotFoundException("账号已被禁用: " + username);
+            throw new DisabledException("账号已被禁用: " + username);
         }
         
         // 查询用户角色
