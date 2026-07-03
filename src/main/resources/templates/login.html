@@ -28,8 +28,17 @@
                         <input type="checkbox" name="remember-me"> 记住我
                     </label>
                 </div>
-                <div class="form-group" th:if="${param.error}">
-                    <div class="error-msg">用户名或密码错误，请重试！</div>
+                <div class="form-group" th:if="${param.error == 'bad_credentials'}">
+                    <div class="error-msg">密码错误，请重试！</div>
+                </div>
+                <div class="form-group" th:if="${param.error == 'disabled'}">
+                    <div class="error-msg" style="color: #ff9800;">账号已被禁用，请联系管理员！</div>
+                </div>
+                <div class="form-group" th:if="${param.error == 'locked'}">
+                    <div class="error-msg" style="color: #ff9800;">账号已被锁定，请稍后再试！</div>
+                </div>
+                <div class="form-group" th:if="${param.error == 'error'}">
+                    <div class="error-msg">用户不存在，请检查用户名！</div>
                 </div>
                 <div class="form-group" th:if="${param.logout}">
                     <div class="success-msg">您已成功退出登录！</div>

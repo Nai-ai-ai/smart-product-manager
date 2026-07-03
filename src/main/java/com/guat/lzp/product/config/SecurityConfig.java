@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 /**
  * Spring Security 安全配置
@@ -27,6 +28,9 @@ public class SecurityConfig {
     
     @Autowired
     private CustomLoginSuccessHandler customLoginSuccessHandler;
+    
+    @Autowired
+    private CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -54,7 +58,7 @@ public class SecurityConfig {
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .successHandler(customLoginSuccessHandler)
-                .failureUrl("/login?error=true")
+                .failureHandler(customAuthenticationFailureHandler)
                 .permitAll()
             )
             .rememberMe(remember -> remember
