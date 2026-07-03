@@ -242,13 +242,8 @@ body::before {
     margin-bottom: 20px;
     font-size: 14px;
     color: #ff3b30;
-    display: none;
     position: relative;
     z-index: 1;
-}
-
-.error-msg.show {
-    display: block;
 }
 
 /* 底部版权 */
